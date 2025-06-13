@@ -1,1 +1,40 @@
+@plugin "daisyui";
+
 @import "tailwindcss";
+
+@layer components {
+  .personal {
+    @apply bg-blue-200 text-blue-600;
+  }
+  .work {
+    @apply bg-green-200 text-green-600;
+  }
+  .family {
+    @apply bg-yellow-200 text-yellow-600;
+  }
+  .health {
+    @apply bg-emerald-200 text-emerald-600;
+  }
+  .business {
+    @apply bg-indigo-200 text-indigo-600;
+  }
+  .others {
+    @apply bg-gray-200 text-gray-600;
+  }
+
+  .todoDone-text {
+    @apply line-through text-gray-400;
+  }
+  .todoDone-div {
+    @apply bg-gray-300;
+  }
+  #edit-todo::backdrop {
+    @apply bg-black;
+  }
+}
+
+@layer utilities {
+  .flex-center {
+    @apply flex justify-center items-center;
+  }
+}
