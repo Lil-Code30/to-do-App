@@ -253,7 +253,9 @@ function App() {
             <span>Add</span>
           </button>
         </form>
-        <section className="grid grid-cols-3 gap-2">{allCategoriesEl}</section>
+        <section className="grid grid-cols-2 md:grid-cols-3 gap-2">
+          {allCategoriesEl}
+        </section>
         <section>
           <h2 className="text-4xl font-semibold my-1.5">All Tasks</h2>
           {todoLists.length > 0 ? (
