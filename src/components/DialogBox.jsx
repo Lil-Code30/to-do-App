@@ -1,13 +1,32 @@
 import { useState, useEffect } from "react";
 
-export default function DialogBox({ todo }) {
-  const [todoText, setTodoText] = useState(todo?.todoText);
-  const [description, setDescription] = useState(todo?.description);
-  const [dueDate, setDueDate] = useState(todo?.dueDate);
-  const [priority, setPriority] = useState(todo?.priority);
-  const [category, setCategory] = useState(todo?.category);
+export default function DialogBox({ todo, onEditSubmit }) {
+  const [todoText, setTodoText] = useState("");
+  const [description, setDescription] = useState("");
+  const [dueDate, setDueDate] = useState("");
+  const [priority, setPriority] = useState("low");
+  const [category, setCategory] = useState("personal");
 
-  const handleEditSubmit = (FormData) => {};
+  // Effect to update internal state when the `todo` prop changes
+  useEffect(() => {
+    setTodoText(todo?.todoText || "");
+    setDescription(todo?.description || "");
+    setDueDate(todo?.dueDate || "");
+    setPriority(todo?.priority || "low");
+    setCategory(todo?.category || "others");
+  }, [todo]);
+
+  const handleEditSubmit = () => {
+    onEditSubmit({
+      id: todo.id,
+      todoText,
+      description,
+      dueDate,
+      priority,
+      category,
+      status: todo.status,
+    });
+  };
 
   return (
     <dialog id="edit-todo" className="modal">
@@ -15,7 +34,16 @@ export default function DialogBox({ todo }) {
         Edit Your Task
       </h1>
       <form
-        action={handleEditSubmit}
+        onSubmit={(e) => {
+          e.preventDefault();
+          handleEditSubmit({
+            todoText,
+            description,
+            dueDate,
+            priority,
+            category,
+          });
+        }}
         className="flex flex-col gap-y-3 w-[60%]  bg-gray-200  text-black dark:bg-bl border border-gray-400 rounded  px-2 py-3 gap-x-1 mb-3"
       >
         <input

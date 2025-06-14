@@ -65,6 +65,19 @@ function App() {
     });
   };
 
+  //function to edit the todo
+  const handleUpdateTodo = (updatedTodo) => {
+    setTodoLists((prevTodos) =>
+      prevTodos.map((t) => (t.id === updatedTodo.id ? updatedTodo : t))
+    );
+    document.getElementById("edit-todo").close(); // Fermer le modal
+  };
+
+  const handleEditModal = (todo) => {
+    setTodo(todo);
+    document.getElementById("edit-todo").showModal();
+  };
+
   // function to count the number of todos under a specific category
   const NumberOfTodosInCategory = (categoryName) => {
     const todosInCategory = todoLists.filter(
@@ -81,10 +94,6 @@ function App() {
       categoryName={category}
     />
   ));
-  const handleEditModal = (todo) => {
-    setTodo(todo);
-    document.getElementById("edit-todo").showModal();
-  };
 
   // map all todos
   const todoListEl = todoLists.map((el) => {
@@ -154,7 +163,7 @@ function App() {
 
   return (
     <>
-      <DialogBox todo={todo} />
+      <DialogBox todo={todo} onEditSubmit={handleUpdateTodo} />
       <header className="h-[180px] text-white  bg-[url('./assets/images/home-hero.jpg')]">
         <div className="flex justify-between items-center pt-8 md:w-[80%] lg:w-[50%] mx-auto px-2 md:px-0">
           <h1 className="text-3xl  font-semibold">TODO</h1>
