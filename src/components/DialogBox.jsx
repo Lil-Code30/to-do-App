@@ -30,9 +30,6 @@ export default function DialogBox({ todo, onEditSubmit }) {
 
   return (
     <dialog id="edit-todo" className="modal">
-      <h1 className="bg-black w-[60%] mx-auto text-center text-3xl py-1 font-semibold rounded">
-        Edit Your Task
-      </h1>
       <form
         onSubmit={(e) => {
           e.preventDefault();
@@ -46,6 +43,28 @@ export default function DialogBox({ todo, onEditSubmit }) {
         }}
         className="flex flex-col gap-y-3 w-[60%]  bg-gray-200  text-black dark:bg-bl border border-gray-400 rounded  px-2 py-3 gap-x-1 mb-3"
       >
+        <div className="bg-black w-full text-white mb-2 flex items-center justify-between mx-auto py-1 px-2 rounded">
+          <h1 className="text-3xl font-bold">Edit Your Task</h1>
+          <button
+            onClick={() => document.getElementById("edit-todo").close()}
+            className="bg-red-600 p-1 rounded flex justify-center items-center"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth={2.5}
+              stroke="currentColor"
+              className="size-5"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M6 18 18 6M6 6l12 12"
+              />
+            </svg>
+          </button>
+        </div>
         <input
           required
           type="text"
